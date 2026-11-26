@@ -1,0 +1,169 @@
+/* Dompet Keluarga — stylesheet. One palette, one type stack, no web fonts:
+   system type only, so the site works fully offline. */
+:root {
+  --green: #1d5c3f;
+  --green-soft: #e7f0e9;
+  --green-mid: #1d7a4f;
+  --cream: #faf6ee;
+  --card: #ffffff;
+  --ink: #22301f;
+  --muted: #5d6b5a;
+  --line: #e2ddcf;
+  --amber: #e8a13a;
+  --red: #b23a2a;
+  --orange: #c25e3a;
+  --radius: 14px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+a { color: var(--green-mid); }
+a:hover { text-decoration: underline; }
+h1 { font-size: 1.9rem; line-height: 1.2; margin: 0.4rem 0 0.6rem; color: var(--green); }
+h2 { font-size: 1.15rem; margin: 0 0 0.5rem; color: var(--green); }
+h3 { font-size: 1rem; margin: 0 0 0.3rem; }
+p { margin: 0 0 0.8rem; }
+.muted { color: var(--muted); font-size: 0.92rem; }
+.loading { padding: 3rem; text-align: center; color: var(--muted); }
+
+/* Top navigation */
+.topnav {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.2rem;
+  background: var(--green); color: #fff; padding: 0.7rem 1.2rem;
+  position: sticky; top: 0; z-index: 10;
+}
+.topnav a { color: #dceadf; text-decoration: none; padding: 0.3rem 0.55rem; border-radius: 8px; }
+.topnav a:hover { background: rgba(255,255,255,0.14); text-decoration: none; }
+.topnav a[aria-current="page"] { background: var(--amber); color: #2b1d05; font-weight: 700; }
+.brand { font-weight: 800; font-size: 1.15rem; color: #fff !important; }
+.nav-links { display: flex; flex-wrap: wrap; gap: 0.15rem; }
+
+main { max-width: 1080px; margin: 0 auto; padding: 1.4rem 1.2rem 2.5rem; }
+footer { max-width: 1080px; margin: 0 auto; padding: 0 1.2rem 2rem; color: var(--muted); font-size: 0.9rem; }
+footer p { margin: 0; }
+
+.hero { background: var(--green-soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.5rem; margin-bottom: 1.2rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; font-weight: 700; color: var(--green-mid); margin: 0 0 0.3rem; }
+.lede { font-size: 1.05rem; color: #3c4a38; max-width: 62ch; }
+
+/* Stat cards */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem; margin-bottom: 1.2rem; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.1rem; }
+.stat-label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.25rem; }
+.stat-value { display: block; font-size: 1.45rem; line-height: 1.2; color: var(--green); }
+.stat-sub { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
+.stat.good .stat-value { color: var(--green-mid); }
+.stat.spent .stat-value { color: var(--orange); }
+.stat.bad .stat-value { color: var(--red); }
+
+/* Cards and two-column layout */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem 1.3rem; margin-bottom: 1.2rem; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.grid-2 .card { margin-bottom: 0; }
+.grid-2 { margin-bottom: 1.2rem; }
+
+/* Donut + legend */
+.donut-wrap { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+.donut { width: 220px; height: 220px; flex: none; }
+.donut-total { font-size: 1.05rem; font-weight: 800; fill: var(--ink); }
+.donut-label { font-size: 0.72rem; fill: var(--muted); }
+.legend { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 200px; }
+.legend li { display: flex; align-items: center; gap: 0.5rem; padding: 0.28rem 0; border-bottom: 1px solid #f0ede2; font-size: 0.95rem; }
+.legend li b { margin-left: auto; font-weight: 700; }
+.dot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; flex: none; }
+
+/* Bars */
+.bars { list-style: none; margin: 0; padding: 0; }
+.bars li { margin-bottom: 0.9rem; }
+.bar-head { display: flex; justify-content: space-between; gap: 0.8rem; font-size: 0.95rem; margin-bottom: 0.3rem; }
+.bar-head b { white-space: nowrap; }
+.bar-track { background: #eee9da; border-radius: 999px; height: 12px; overflow: hidden; }
+.bar-track.big { height: 18px; }
+.bar-fill { height: 100%; border-radius: 999px; }
+.bar-fill.over { background: var(--red) !important; }
+.bars small { color: var(--muted); }
+.over-text { color: var(--red); font-weight: 700; }
+
+/* Charts */
+.chart-svg { width: 100%; height: auto; display: block; }
+.chart-svg .grid { stroke: #e6e1d2; stroke-width: 1; }
+.chart-svg .axis { font-size: 12px; fill: var(--muted); }
+.chart-svg .axis.strong { font-weight: 700; fill: var(--ink); font-size: 13px; }
+.legend-note { font-size: 12px; fill: var(--muted); }
+
+/* Tables */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+th, td { text-align: left; padding: 0.55rem 0.6rem; border-bottom: 1px solid #f0ede2; vertical-align: middle; }
+th { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
+td.in { color: var(--green-mid); font-weight: 700; white-space: nowrap; }
+td.out { color: var(--orange); font-weight: 700; white-space: nowrap; }
+.chip { display: inline-block; background: color-mix(in srgb, var(--chip) 14%, white); border: 1px solid var(--chip); color: #333; border-radius: 999px; padding: 0.1rem 0.6rem; font-size: 0.85rem; white-space: nowrap; }
+
+/* Forms, filters, buttons */
+.add-form, .edit-form { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: end; }
+.add-form label, .edit-form label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.88rem; color: var(--muted); }
+input, select { font: inherit; padding: 0.5rem 0.6rem; border: 1px solid #cfc9b4; border-radius: 8px; background: #fff; color: var(--ink); min-width: 0; }
+input:focus, select:focus { outline: 2px solid var(--green-mid); outline-offset: 1px; }
+.btn { font: inherit; background: var(--green-mid); color: #fff; border: none; border-radius: 8px; padding: 0.55rem 1rem; cursor: pointer; }
+.btn:hover { background: var(--green); }
+.btn.small { padding: 0.35rem 0.7rem; font-size: 0.88rem; }
+.btn.ghost { background: #eee9da; color: var(--ink); }
+.btn.danger { background: var(--red); }
+.filters { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: end; margin-bottom: 0.9rem; }
+.filters label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.88rem; color: var(--muted); }
+.totals-line { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; font-size: 0.95rem; background: var(--green-soft); border-radius: 8px; padding: 0.6rem 0.9rem; }
+.totals-line .in { color: var(--green-mid); }
+.totals-line .out { color: var(--orange); }
+.row-actions { display: flex; gap: 0.5rem; }
+
+/* Bills */
+.bill-list { list-style: none; margin: 0; padding: 0; }
+.bill-list li { display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; align-items: baseline; padding: 0.6rem 0; border-bottom: 1px solid #f0ede2; }
+.bill-list li span:first-child { font-weight: 600; }
+.bill-list li b { margin-left: auto; }
+.bill-row { display: grid; grid-template-columns: 1.4fr 1.6fr 1fr auto auto; gap: 0.4rem 1rem; align-items: center; }
+.bill-check { display: flex; gap: 0.55rem; align-items: center; font-weight: 600; cursor: pointer; }
+.bill-check input { width: 1.15rem; height: 1.15rem; accent-color: var(--green-mid); }
+.bill-note { color: var(--muted); font-size: 0.9rem; }
+.bill-due { font-size: 0.9rem; }
+.bill-status { font-size: 0.85rem; font-weight: 700; padding: 0.15rem 0.6rem; border-radius: 999px; }
+.bill-status.paid { background: var(--green-soft); color: var(--green-mid); }
+.bill-status.due { background: #fbeed3; color: #8a5a00; }
+
+/* Budgets and goals */
+.budget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.2rem; }
+.budget-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.1rem; }
+.budget-card p { margin: 0.5rem 0 0; font-size: 0.92rem; }
+.goal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.goal-card { margin-bottom: 0; }
+.goal-nums { margin: 0.6rem 0; }
+.add-funds { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: end; margin-top: 0.6rem; }
+.add-funds label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.88rem; color: var(--muted); }
+
+/* Tips and method list */
+.tips { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.tip { background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--amber); border-radius: var(--radius); padding: 1rem 1.1rem; }
+.method-list li { margin-bottom: 0.6rem; }
+
+/* Phone layout */
+@media (max-width: 760px) {
+  body { font-size: 15px; }
+  main { padding: 1rem 0.9rem 2rem; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .grid-2, .budget-grid, .goal-grid, .tips { grid-template-columns: 1fr; }
+  .stat-value { font-size: 1.2rem; }
+  h1 { font-size: 1.6rem; }
+  .topnav { padding: 0.6rem 0.8rem; }
+  .nav-links a { padding: 0.35rem 0.45rem; font-size: 0.92rem; }
+  .donut-wrap { justify-content: center; }
+  .bill-row { grid-template-columns: 1fr auto; }
+  .bill-note, .bill-due { grid-column: 1 / -1; }
+  .add-form label, .edit-form label { flex: 1 1 45%; }
+}
